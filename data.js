@@ -24,6 +24,7 @@ holla({
         "booty",
         "dank",
         "dub",
+        "dubs",
         "thug",
         "wanksta",
         "chillax",
@@ -44,7 +45,13 @@ holla({
         "oldskool",
         "newskool",
         "wordup",
-        "dilly"
+        "dilly",
+        "hustle",
+        "O.G.",
+        "trippin",
+        "crunk",
+        "jiggy",
+        "twerk"
      ],
     "numbers": [420, 213, 313, 808, 247, 69, 187]
 })

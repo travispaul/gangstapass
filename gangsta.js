@@ -1,6 +1,6 @@
 (function (window) {
     'use strict';
-    
+
     var pass = document.getElementById('pass'),
         button = document.getElementById('generate'),
         words = [],
@@ -8,7 +8,8 @@
         seperator = ['-', '_', '/', '', '!'],
         holla = function (library) {
            words = library.words;
-           numbers = library.numbers; 
+           numbers = library.numbers;
+           doit();
         },
         randmax = function (max) {
             return Math.floor(Math.random() * max);
