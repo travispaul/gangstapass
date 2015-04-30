@@ -1,11 +1,9 @@
 html, body {
     text-align: center;
-    width: 100%;
-    height: 100%;
 }
 
 input {
-    margin-top: 25%;
+    margin-top: 5%;
     font-size: 32px;
     text-align: center;
     border: 0;
