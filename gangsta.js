@@ -19,50 +19,34 @@
         random = function (items) {
             return items[randmax(items.length)];
         },
-        swapChar = function (pwChar, lChars) {
-            var c, 
-            chosenChar = pwChar;
-            for (c = 0; c < lChars.length; c += 1) {
-                if (randmax(100) % 3 === 0) {
-                    chosenChar = lChars[c];
+        swapChar = function (pwChar) {
+            var c,
+            lcIndex = pwChar.toUpperCase();
+            if (leetChars.hasOwnProperty(lcIndex)) {
+                for (c = 0; c < leetChars[lcIndex].length; c += 1) {
+                    if (randmax(100) % 3 === 0) {
+                        return leetChars[lcIndex][c];
+                    } else {
+                        return pwChar
+                    }
                 }
+            } else {
+                return pwChar        
             }
-            if (chosenChar === pwChar) {
-                chosenChar = (randmax(100) % 4 === 0) ? 
-                    pwChar.toUpperCase() : pwChar;
-            }
-            return chosenChar;
         },
         leetspeak = function (pw) {
-            var i;
+            var i, newPWC;
             pw = pw.split('');
 
-            for(i = 0; i < pw.length; i += 1) {
-                if (pw[i] === 'a' || pw[i] === 'A'){
-                    pw[i] = swapChar(pw[i], leetChars.charA);
-                } else if (pw[i] === 'b' || pw[i] === 'B') {
-                    pw[i] = swapChar(pw[i], leetChars.charB);
-                } else if (pw[i] === 'c' || pw[i] === 'C') {
-                    pw[i] = swapChar(pw[i], leetChars.charC);
-                } else if (pw[i] === 'e' || pw[i] === 'E') {
-                    pw[i] = swapChar(pw[i], leetChars.charE);
-                } else if (pw[i] === 'g' || pw[i] === 'G') {
-                    pw[i] = swapChar(pw[i], leetChars.charG);
-                } else if (pw[i] === 'i' || pw[i] === 'I') {
-                    pw[i] = swapChar(pw[i], leetChars.charI);
-                } else if (pw[i] === 'o' || pw[i] === 'O') {
-                    pw[i] = swapChar(pw[i], leetChars.charO);
-                } else if (pw[i] === 's' || pw[i] === 'S') {
-                    pw[i] = swapChar(pw[i], leetChars.charS);
-                } else if (pw[i] === 't' || pw[i] === 'T') {
-                    pw[i] = swapChar(pw[i], leetChars.charT);
-                } else if (pw[i] === 'x' || pw[i] === 'X') {
-                    pw[i] = swapChar(pw[i], leetChars.charX);
-                } else if (pw[i] === 'z' || pw[i] === 'Z') {
-                    pw[i] = swapChar(pw[i], leetChars.charZ);
-                } else {
-                    pw[i] = (randmax(100) % 6 === 0) ? 
+            // sends characters to swapChar, randomly capitalizes a character
+            //  if not changed in swapChar.
+            for (i = 0; i < pw.length; i += 1) {
+                newPWC = swapChar(pw[i]);
+                if (pw[i] === newPWC) {
+                    pw[i] = (randmax(100) % 4 === 0) ? 
                         pw[i].toUpperCase() : pw[i];
+                } else {
+                    pw[i] = newPWC;
                 }
             }
             return pw.join('');
