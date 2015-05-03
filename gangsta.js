@@ -5,10 +5,12 @@
         button = document.getElementById('generate'),
         words = [],
         numbers = [],
-        seperator = ['-', '_', '/', '', '!'],
+        leetChars,
+        seperator = ['-', '_', '/', ''],
         holla = function (library) {
            words = library.words;
            numbers = library.numbers;
+           leetChars = library.leetChars;
            doit();
         },
         randmax = function (max) {
@@ -17,8 +19,58 @@
         random = function (items) {
             return items[randmax(items.length)];
         },
+        swapChar = function (pwChar, lChars) {
+            var c, 
+            chosenChar = pwChar;
+            for (c = 0; c < lChars.length; c += 1) {
+                if (randmax(100) % 3 === 0) {
+                    chosenChar = lChars[c];
+                }
+            }
+            if (chosenChar === pwChar) {
+                chosenChar = (randmax(100) % 4 === 0) ? 
+                    pwChar.toUpperCase() : pwChar;
+            }
+            return chosenChar;
+        },
+        leetspeak = function (pw) {
+            var i;
+            pw = pw.split('');
+
+            for(i = 0; i < pw.length; i += 1) {
+                if (pw[i] === 'a' || pw[i] === 'A'){
+                    pw[i] = swapChar(pw[i], leetChars.charA);
+                } else if (pw[i] === 'b' || pw[i] === 'B') {
+                    pw[i] = swapChar(pw[i], leetChars.charB);
+                } else if (pw[i] === 'c' || pw[i] === 'C') {
+                    pw[i] = swapChar(pw[i], leetChars.charC);
+                } else if (pw[i] === 'e' || pw[i] === 'E') {
+                    pw[i] = swapChar(pw[i], leetChars.charE);
+                } else if (pw[i] === 'g' || pw[i] === 'G') {
+                    pw[i] = swapChar(pw[i], leetChars.charG);
+                } else if (pw[i] === 'i' || pw[i] === 'I') {
+                    pw[i] = swapChar(pw[i], leetChars.charI);
+                } else if (pw[i] === 'o' || pw[i] === 'O') {
+                    pw[i] = swapChar(pw[i], leetChars.charO);
+                } else if (pw[i] === 's' || pw[i] === 'S') {
+                    pw[i] = swapChar(pw[i], leetChars.charS);
+                } else if (pw[i] === 't' || pw[i] === 'T') {
+                    pw[i] = swapChar(pw[i], leetChars.charT);
+                } else if (pw[i] === 'x' || pw[i] === 'X') {
+                    pw[i] = swapChar(pw[i], leetChars.charX);
+                } else if (pw[i] === 'z' || pw[i] === 'Z') {
+                    pw[i] = swapChar(pw[i], leetChars.charZ);
+                } else {
+                    pw[i] = (randmax(100) % 6 === 0) ? 
+                        pw[i].toUpperCase() : pw[i];
+                }
+            }
+            return pw.join('');
+
+        },
         doit = function () {
-            var str1, count;
+            var str1, count,
+                secureLvl = document.getElementById('security-lvl').value;
             switch(randmax(3)) {
                 case 0:
                     str1 = random(words) + random(seperator) + random(words) + random(numbers);
@@ -31,12 +83,24 @@
                     break;
             }
 
-            str1 = str1.split('');
-            for (count = 0; count < str1.length; count += 1) {
-                str1[count] = (randmax(100) % 6 === 0) ?
-                    str1[count].toUpperCase() : str1[count];
+            switch(secureLvl) {
+                case 'high':
+                    pass.value = leetspeak(str1);
+                    break;
+                case 'medium':
+                    str1 = str1.split('');
+                    for (count = 0; count < str1.length; count += 1) {
+                        str1[count] = (randmax(100) % 4 === 0) ?
+                            str1[count].toUpperCase() : str1[count];
+                    }
+                    pass.value = str1.join('');
+                    break;
+                case 'low':
+                default:
+                    pass.value = str1;
+                    break;
+
             }
-            pass.value = str1.join('');
 
         };
 

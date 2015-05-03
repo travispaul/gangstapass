@@ -53,5 +53,18 @@ holla({
         "jiggy",
         "twerk"
      ],
-    "numbers": [420, 213, 313, 808, 247, 69, 187]
+    "numbers": [420, 213, 313, 808, 247, 69, 187],
+    "leetChars": {
+        "charA": [4, "@"],
+        "charB": [8],
+        "charC": ["("],
+        "charE": [3],
+        "charG": [6],
+        "charI": [1, "!"],
+        "charO": [0],
+        "charS": [5, "$"],
+        "charT": [7, "+"],
+        "charX": ["%"],
+        "charZ": [2]
+    },
 })

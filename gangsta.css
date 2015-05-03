@@ -10,6 +10,11 @@ input {
     background: transparent;
 }
 
+select {
+    margin-top: 5%;
+    font-size: 22px;
+}
+
 button {
     margin-top: 20px;
     font-size: 32px;
